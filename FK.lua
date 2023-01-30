@@ -29,7 +29,7 @@ local Library = {
     HudRegistry = {};
 
     FontColor = Color3.fromRGB(255, 255, 255);
-	FontColor2 = Color3.fromRGB(0, 85, 255);
+    FontColor2 = Color3.fromRGB(0, 85, 255);
     MainColor = Color3.fromRGB(28, 28, 28);
     BackgroundColor = Color3.fromRGB(20, 20, 20);
     AccentColor = Color3.fromRGB(0, 85, 255);
@@ -3000,7 +3000,7 @@ function Library:CreateWindow(...)
             Groupbox:AddBlank(3);
             Groupbox:Resize();
 
-            Tab.Groupboxes[([[\\ ]] .. Info.Name .. " //");] = Groupbox;
+            Tab.Groupboxes[([[\\ ]] .. Info.Name .. " //")] = Groupbox;
 
             return Groupbox;
         end;
