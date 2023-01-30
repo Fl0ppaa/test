@@ -2735,10 +2735,14 @@ function Library:CreateWindow(...)
         Position = UDim2.new(0, 7, 0, 0);
         Size = UDim2.new(0, 0, 0, 25);
         Text = Config.Title or '';
-		TextColor3 = Library.FontColor2,
+		TextColor3 = Library.FontColor2;
         TextXAlignment = Enum.TextXAlignment.Left;
         ZIndex = 1;
         Parent = Inner;
+    });
+
+	Library:AddToRegistry(WindowLabel, {
+        TextColor3 = 'FontColor2',
     });
 
     local MainSectionOuter = Library:Create('Frame', {
