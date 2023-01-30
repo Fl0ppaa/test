@@ -1193,7 +1193,7 @@ do
         });
     end;
 
-    function Funcs:AddLabel(Text, DoesWrap)
+    function Funcs:AddLabel(Text, Uwu)
         local Label = {};
 
         local Groupbox = self;
@@ -1202,44 +1202,28 @@ do
         local TextLabel = Library:CreateLabel({
             Size = UDim2.new(1, -4, 0, 15);
             TextSize = 14;
-            Text = Text;
-            TextWrapped = DoesWrap or false,
+            Text = Uwu and ([[\\ ]] .. Text .. " //") or Text;
             RichText = true,
-            TextXAlignment = Enum.TextXAlignment.Left;
+            TextXAlignment = Uwu and Enum.TextXAlignment.Center or Enum.TextXAlignment.Left;
             ZIndex = 5;
             Parent = Container;
         });
 
-        if DoesWrap then
-            local Y = select(2, Library:GetTextBounds(Text, Library.Font, 14, Vector2.new(TextLabel.AbsoluteSize.X, math.huge)))
-            TextLabel.Size = UDim2.new(1, -4, 0, Y)
-        else
-            Library:Create('UIListLayout', {
-                Padding = UDim.new(0, 4);
-                FillDirection = Enum.FillDirection.Horizontal;
-                HorizontalAlignment = Enum.HorizontalAlignment.Right;
-                SortOrder = Enum.SortOrder.LayoutOrder;
-                Parent = TextLabel;
-            });
+        Library:Create('UIListLayout', {
+            Padding = UDim.new(0, 4);
+            FillDirection = Enum.FillDirection.Horizontal;
+            HorizontalAlignment = Enum.HorizontalAlignment.Right;
+            SortOrder = Enum.SortOrder.LayoutOrder;
+            Parent = TextLabel;
+        });
+
+        function Label:ChangeText(Text)
+            TextLabel.Text = Uwu and ([[\\ ]] .. Text .. " //") or Text;
         end
 
         Label.TextLabel = TextLabel;
         Label.Container = Container;
-
-        function Label:SetText(Text)
-            TextLabel.Text = Text
-
-            if DoesWrap then
-                local Y = select(2, Library:GetTextBounds(Text, Library.Font, 14, Vector2.new(TextLabel.AbsoluteSize.X, math.huge)))
-                TextLabel.Size = UDim2.new(1, -4, 0, Y)
-            end
-
-            Groupbox:Resize();
-        end
-
-        if (not DoesWrap) then
-            setmetatable(Label, BaseAddons);
-        end
+        setmetatable(Label, BaseAddons);
 
         Groupbox:AddBlank(5);
         Groupbox:Resize();
@@ -2960,11 +2944,16 @@ function Library:CreateWindow(...)
                 Size = UDim2.new(1, 0, 0, 18);
                 Position = UDim2.new(0, 4, 0, 2);
                 TextSize = 14;
-                Text = Info.Name;
-                TextXAlignment = Enum.TextXAlignment.Left;
+                Text = ([[\\ ]] .. Info.Name .. " //");
+				TextColor3 = Library.FontColor2;
+                TextXAlignment = Enum.TextXAlignment.Center;
                 ZIndex = 5;
                 Parent = BoxInner;
             });
+
+			Library:AddToRegistry(GroupboxLabel, {
+				TextColor3 = 'FontColor2',
+			});
 
             local Container = Library:Create('Frame', {
                 BackgroundTransparency = 1;
@@ -2998,7 +2987,7 @@ function Library:CreateWindow(...)
             Groupbox:AddBlank(3);
             Groupbox:Resize();
 
-            Tab.Groupboxes[Info.Name] = Groupbox;
+            Tab.Groupboxes[([[\\ ]] .. Info.Name .. " //");] = Groupbox;
 
             return Groupbox;
         end;
