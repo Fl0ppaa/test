@@ -2820,6 +2820,19 @@ function Library:CreateWindow(...)
             Parent = TabButton;
         });
 
+		local Highlight = Library:Create('Frame', {
+            BackgroundColor3 = Library.AccentColor;
+            BorderSizePixel = 0;
+            Size = UDim2.new(1, 0, 0, 2);
+            ZIndex = 5;
+            Visible = false;
+            Parent = TabButton;
+        });
+
+        Library:AddToRegistry(Highlight, {
+            BackgroundColor3 = 'AccentColor';
+        });
+
         local Blocker = Library:Create('Frame', {
             BackgroundColor3 = Library.MainColor;
             BorderSizePixel = 0;
