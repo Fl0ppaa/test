@@ -2777,7 +2777,7 @@ function Library:CreateWindow(...)
         BorderColor3 = Library.OutlineColor;
         Position = UDim2.new(0, 8, 0, 30);
         Size = UDim2.new(1, -16, 1, -38);
-		Image = 'http://www.roblox.com/asset/?id=9579346859';
+		Image = 'http://www.roblox.com/asset/?id=10820820837';
         ZIndex = 2;
         Parent = MainSectionInner;
     });
