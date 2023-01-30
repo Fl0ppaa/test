@@ -29,7 +29,7 @@ local Library = {
     HudRegistry = {};
 
     FontColor = Color3.fromRGB(255, 255, 255);
-    FontColor2 = Color3.fromRGB(0, 85, 255);
+	FontColor2 = Color3.fromRGB(0, 85, 255);
     MainColor = Color3.fromRGB(28, 28, 28);
     BackgroundColor = Color3.fromRGB(20, 20, 20);
     AccentColor = Color3.fromRGB(0, 85, 255);
@@ -2894,6 +2894,8 @@ function Library:CreateWindow(...)
 
             Blocker.BackgroundTransparency = 0;
             TabButton.BackgroundColor3 = Library.MainColor;
+            Highlight.BackgroundColor3 = Library.AccentColor;
+            Highlight.Visible = true;
             Library.RegistryMap[TabButton].Properties.BackgroundColor3 = 'MainColor';
             TabFrame.Visible = true;
         end;
@@ -2901,6 +2903,8 @@ function Library:CreateWindow(...)
         function Tab:HideTab()
             Blocker.BackgroundTransparency = 1;
             TabButton.BackgroundColor3 = Library.BackgroundColor;
+            Highlight.BackgroundColor3 = Library.OutlineColor;
+            Highlight.Visible = false;
             Library.RegistryMap[TabButton].Properties.BackgroundColor3 = 'BackgroundColor';
             TabFrame.Visible = false;
         end;
@@ -3000,7 +3004,7 @@ function Library:CreateWindow(...)
             Groupbox:AddBlank(3);
             Groupbox:Resize();
 
-            Tab.Groupboxes[([[\\ ]] .. Info.Name .. " //")] = Groupbox;
+            Tab.Groupboxes[([[\\ ]] .. Info.Name .. " //");] = Groupbox;
 
             return Groupbox;
         end;
